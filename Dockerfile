@@ -4,11 +4,13 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN <<EOF
     apt update
-    apt install -y curl file gcc wget python3 python3-pip \
+    apt install -y --no-install-recommends \
+        curl file gcc wget python3 python3-pip \
         autoconf automake build-essential ccache cmake cpufrequtils doxygen ethtool pkg-config \
         g++ git inetutils-tools libboost-all-dev libncurses-dev libusb-1.0-0 libusb-1.0-0-dev \
         libusb-dev python3-dev python3-mako python3-numpy python3-requests python3-scipy python3-setuptools \
         python3-ruamel.yaml libboost-all-dev nlohmann-json3-dev clang gdb libfftw3-dev
+    rm -rf /var/lib/apt/lists/*
 EOF
 
 SHELL ["/bin/bash", "-c"]
@@ -28,8 +30,8 @@ RUN <<EOF
     make -j${JOBS}
     make test
     make install
-    cd ../
-    rm -rf build
+    cd ~
+    rm -rf tmp
     echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib' >> /root/.bashrc
     uhd_images_downloader
 EOF
