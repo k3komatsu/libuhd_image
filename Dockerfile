@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -18,9 +18,9 @@ RUN <<EOF
     cd ~
     mkdir -p tmp
     cd tmp
-    wget https://github.com/EttusResearch/uhd/archive/refs/tags/v4.9.0.1.tar.gz
-    tar -xf v4.9.0.1.tar.gz
-    cd uhd-4.9.0.1/host
+    wget https://github.com/EttusResearch/uhd/archive/refs/tags/v4.10.0.0.tar.gz
+    tar -xf v4.10.0.0.tar.gz
+    cd uhd-4.10.0.0/host
     mkdir build
     cd build
     cmake -DCMAKE_FIND_ROOT_PATH=/usr ../
@@ -28,6 +28,8 @@ RUN <<EOF
     make -j${JOBS}
     make test
     make install
+    cd ../
+    rm -rf build
     echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib' >> /root/.bashrc
     uhd_images_downloader
 EOF
