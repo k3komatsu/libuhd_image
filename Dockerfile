@@ -20,9 +20,9 @@ RUN <<EOF
     cd ~
     mkdir -p tmp
     cd tmp
-    wget https://github.com/EttusResearch/uhd/archive/refs/tags/v4.10.0.0.tar.gz
-    tar -xf v4.10.0.0.tar.gz
-    cd uhd-4.10.0.0/host
+    wget https://github.com/EttusResearch/uhd/archive/refs/tags/v4.11.0.0.tar.gz
+    tar -xf v4.11.0.0.tar.gz
+    cd uhd-4.11.0.0/host
     mkdir build
     cd build
     cmake -DCMAKE_FIND_ROOT_PATH=/usr ../
