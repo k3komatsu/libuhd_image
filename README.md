@@ -43,11 +43,11 @@ Inside the container, FPGA images are located in `/usr/local/share/uhd/images`. 
 ```sh
 # enter the container
 $ docker run -it --net=host --rm ghcr.io/k3komatsu/uhd:v4.7 /bin/bash
-# flash the FPGA image (replace <IP ADDR>, {device}, and {image} as needed)
-$ uhd_image_loader --args="type=x300,addr=<IP ADDR>" --fpga-path=/usr/local/share/uhd/images/usrp_{device}_fpga_{image}.bit
+# flash the FPGA image
+$ uhd_image_loader --args="type=x300,addr={address},fpga={image}"
 ```
 
-`{device}` should be either `x300` or `x310`. `{image}` is either `HG` or `XG`.
+`{image}` is either `HG` or `XG`.
 
 - Images ending with `XG` enable both SFP+ ports at 10GbE.
 - Images ending with `HG` leave port 0 at 1GbE and the other port at 10GbE.
